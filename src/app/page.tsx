@@ -209,6 +209,7 @@ export default function Page() {
                 >
                   <HackathonCard
                     title={project.title}
+                    result={project.result}
                     description={project.description}
                     location={project.location}
                     dates={project.dates}
