@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState, useId } from 'react';
 import { useTheme } from 'next-themes';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+import CallToAction from '../CTA';
 
 interface ParticleBackgroundProps {
   id?: string;
@@ -478,26 +479,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
           >
             {/* Show alternate message when scrolling back up */}
             {showAlternateMessage ? (
-  <motion.div
-    key="alternate-message"
-    initial={{ opacity: 0, y: -20 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: 20 }}
-    transition={{ duration: 0.5 }}
-    className="flex flex-col items-center justify-center w-full"
-  >
-    <motion.h1 className="text-5xl md:text-7xl font-bold mb-6 text-center w-full">
-      See potential?
-    </motion.h1>
-    <motion.p className="text-xl md:text-2xl mb-8 text-center max-w-2xl mx-auto px-4">
-      Let’s collaborate and build something meaningful.
-    </motion.p>
-    <motion.div className="flex justify-center w-full">
-      <button className="bg-foreground text-background px-6 py-3 rounded-lg font-medium pointer-events-auto">
-        Get in Touch
-      </button>
-    </motion.div>
-  </motion.div>
+  <CallToAction/>
 ) : (
               // Original welcome message
               <>
