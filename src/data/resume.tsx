@@ -85,6 +85,7 @@ export const DATA = {
       href: "https://mindfullweb.netlify.app",
       dates: "2024",
       active: true,
+      // video: "/mindfull.mp4",
       description:
         "A comprehensive mental health support platform designed to help students, parents, and educators foster better mental well-being through personalized content, peer support, and professional guidance from counselors. Features include real-time group chats, in-app video consultation, AI-assisted journal writing, vision board creation & to-do-list maker.",
       technologies: [
@@ -111,6 +112,7 @@ export const DATA = {
       href: "https://voxbiz-demo.netlify.app",
       dates: "2024",
       active: true,
+      video: "/voxbiz.mp4",
       description:
         "A GenAI-powered analytics platform enabling non-technical users to query PostgreSQL databases using natural language and visualize real-time data through interactive charts. Built with React, Node.js, Express, and NLP-driven query generation, featuring voice input, query history, rule management, and guided customization for enhanced decision-making of executives & managers.",
       technologies: [
@@ -165,6 +167,7 @@ export const DATA = {
       href: "https://foodloopweb.netlify.app",
       dates: "2024",
       active: true,
+      video: "/foodloopdemo.mov",
       description:
         "An AI-powered, blockchain-enabled food donation platform that enables real-time food recovery, transparency, and impact reporting. It connects donors, NGOs, and volunteers through smart logistics, packaging, and disposal suggestions—aligned with 5 UN SDGs.",
       technologies: [
