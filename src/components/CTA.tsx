@@ -1,17 +1,14 @@
 import { motion } from 'framer-motion';
 
 const CallToAction = () => {
-  // For the View Resume button - opens Google Drive folder
   const handleViewResume = () => {
     window.open('https://drive.google.com/drive/folders/1IkzvQ3kuG9lxVvXyffvAz2jEdYTathaN?usp=drive_link', '_blank');
   };
 
-  // For the Download Resume button - downloads the local file
   const handleDownloadResume = () => {
-    // Create a link to the file in the public folder
     const link = document.createElement('a');
-    link.href = '/Resume.pdf'; // Path to your resume in the public folder
-    link.download = 'Resume_Sankalp.pdf'; // Name for the downloaded file
+    link.href = '/Resume.pdf'; 
+    link.download = 'Resume_Sankalp.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

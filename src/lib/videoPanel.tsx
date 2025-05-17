@@ -4,6 +4,7 @@ import React, { useEffect, useState, createContext, useContext } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Expand, ZoomIn, ZoomOut, X } from 'lucide-react';
 
 interface VideoData {
   videoSrc?: string;
@@ -45,6 +46,7 @@ interface VideoSidePanelsProviderProps {
 
 const MediaComponent = ({ data, onFullscreen }: MediaComponentProps) => {
   const { videoSrc, title, position } = data;
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div 
@@ -66,15 +68,17 @@ const MediaComponent = ({ data, onFullscreen }: MediaComponentProps) => {
       }}
       transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
       className={cn(
-        "fixed z-50 w-[320px]",
+        "fixed z-50 w-[400px]",
         position.side === "left" ? "left-8" : "right-8"
       )}
       style={{ top: `${position.top}px` }}
     >
       <motion.div 
-        className="relative rounded-lg overflow-hidden shadow-xl bg-black/5 backdrop-blur-sm"
+        className="relative rounded-lg overflow-hidden shadow-xl bg-black/5 backdrop-blur-sm group"
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.2 }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <video
           src={videoSrc}
@@ -83,8 +87,18 @@ const MediaComponent = ({ data, onFullscreen }: MediaComponentProps) => {
           muted
           playsInline
           className="w-full aspect-video object-cover rounded-lg"
-          onClick={() => onFullscreen(data)}
         />
+        
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.2 }}
+          onClick={() => onFullscreen(data)}
+          className="absolute top-2 right-2 p-2 rounded-lg bg-black/20 backdrop-blur-sm text-white/90 hover:bg-black/40 hover:text-white transition-all"
+        >
+          <Expand className="w-5 h-5" />
+        </motion.button>
+
         {title && (
           <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/50 to-transparent">
             <p className="text-white text-sm font-medium">{title}</p>
@@ -99,6 +113,7 @@ export function VideoSidePanelsProvider({ children }: VideoSidePanelsProviderPro
   const [mounted, setMounted] = useState(false);
   const [visibleVideos, setVisibleVideos] = useState<VisibleVideoWithPosition[]>([]);
   const [fullscreenVideo, setFullscreenVideo] = useState<VideoData | null>(null);
+  const [zoom, setZoom] = useState(1);
 
   useEffect(() => {
     setMounted(true);
@@ -174,6 +189,12 @@ export function VideoSidePanelsProvider({ children }: VideoSidePanelsProviderPro
     };
   }, []);
 
+  useEffect(() => {
+    if (!fullscreenVideo) {
+      setZoom(1);
+    }
+  }, [fullscreenVideo]);
+
   const value: VideoSidePanelsContextType = {
     registerProjectCard: (ref, side, id, video, title) => {
       if (ref.current) {
@@ -202,21 +223,52 @@ export function VideoSidePanelsProvider({ children }: VideoSidePanelsProviderPro
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
-              onClick={() => setFullscreenVideo(null)}
+              className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90"
             >
               <motion.div 
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
-                className="relative w-full max-w-6xl mx-4"
+                className="relative w-full h-full max-w-7xl mx-auto p-4 flex items-center justify-center"
+                onClick={(e) => e.stopPropagation()}
               >
-                <video
-                  src={fullscreenVideo.videoSrc}
-                  autoPlay
-                  controls
-                  className="w-full rounded-lg shadow-2xl"
-                />
+                <div className="absolute top-4 right-4 flex items-center gap-2">
+                  <button 
+                    onClick={() => setZoom(prev => Math.max(1, prev - 0.25))}
+                    className="p-2 rounded-lg bg-black/50 text-white/90 hover:bg-black/70 hover:text-white transition-all"
+                    disabled={zoom <= 1}
+                  >
+                    <ZoomOut className="w-5 h-5" />
+                  </button>
+                  <button 
+                    onClick={() => setZoom(prev => Math.min(2, prev + 0.25))}
+                    className="p-2 rounded-lg bg-black/50 text-white/90 hover:bg-black/70 hover:text-white transition-all"
+                    disabled={zoom >= 2}
+                  >
+                    <ZoomIn className="w-5 h-5" />
+                  </button>
+                  <button 
+                    onClick={() => setFullscreenVideo(null)}
+                    className="p-2 rounded-lg bg-black/50 text-white/90 hover:bg-black/70 hover:text-white transition-all"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+                <div className="relative w-full max-h-[90vh] overflow-auto">
+                  <motion.div
+                    animate={{ scale: zoom }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    className="origin-center"
+                  >
+                    <video
+                      src={fullscreenVideo.videoSrc}
+                      autoPlay
+                      controls
+                      className="w-full rounded-lg shadow-2xl"
+                      style={{ maxHeight: '85vh' }}
+                    />
+                  </motion.div>
+                </div>
               </motion.div>
             </motion.div>
           )}
