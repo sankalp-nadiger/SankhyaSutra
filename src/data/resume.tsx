@@ -168,7 +168,7 @@ export const DATA = {
       href: "https://foodloopweb.netlify.app",
       dates: "2024",
       active: true,
-      video: "/foodloopdemo.mp4",
+      video: "/foodloop.mp4",
       description:
         "An AI-powered, blockchain-enabled food donation platform that enables real-time food recovery, transparency, and impact reporting. It connects donors, NGOs, and volunteers through smart logistics, packaging, and disposal suggestions—aligned with 5 UN SDGs.",
       technologies: [
