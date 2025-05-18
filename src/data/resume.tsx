@@ -85,7 +85,7 @@ export const DATA = {
       href: "https://mindfullweb.netlify.app",
       dates: "2024",
       active: true,
-      // video: "/mindfull.mp4",
+      video: "/mindfull.mp4",
       description:
         "A comprehensive mental health support platform designed to help students, parents, and educators foster better mental well-being through personalized content, peer support, and professional guidance from counselors. Features include real-time group chats, in-app video consultation, AI-assisted journal writing, vision board creation & to-do-list maker.",
       technologies: [
@@ -141,6 +141,7 @@ export const DATA = {
       href: "https://cinegenie-demo.netlify.app",
       dates: "2023",
       active: true,
+      video: "/cinegenie.mp4",
       description:
         "An AI-powered movie recommendation platform that suggests personalized films based on mood, preferences, and viewing history. Features include custom watchlists, social sharing, and content discovery across multiple streaming platforms in one unified interface.",
       technologies: [
@@ -221,6 +222,7 @@ export const DATA = {
       href: "https://fitfull.netlify.app",
       dates: "2023",
       active: true,
+      video: "/fitfull.mp4",
       description:
         "A smart healthcare management system that ensures seamless access to personal medical records and family sharing with MFA, real-time health tracking, and AI-powered disease predictions. It integrates wearable devices, telemedicine, and AI models to enhance patient care.",
       technologies: [
@@ -238,6 +240,59 @@ export const DATA = {
         {
           type: "Source",
           href: "https://github.com/sankalp-nadiger/fitfull",
+          icon: <Icons.github className="size-3" />,
+        },
+      ]
+    },
+    {
+      title: "AurisVue",
+      href: "https://aurisvue.netlify.app",
+      dates: "2024",
+      active: true,
+      video: "/aurisvue.mp4",
+      description: 
+        "A real-time audio to Indian Sign Language (ISL) translation platform with multiple modes for different use cases. Features include public mode for general accessibility, training mode for learners, plugin mode for integration with other platforms, and classroom mode with analytics dashboard, live interactive sessions, and adaptive quizzes for educational institutions.",
+      technologies: [
+        "React",
+        "TensorFlow",
+        "WebRTC",
+        "Socket.io",
+        "ML/AI",
+        "Speech Recognition"
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://aurisvue.netlify.app",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/sankalp-nadiger/AurisVue",
+          icon: <Icons.github className="size-3" />,
+        },
+      ]
+    },
+    {
+      title: "UniLink",
+      href: "https://unilink-app.netlify.app",
+      dates: "2024",
+      active: true,
+      //video: "/unilink.mp4",
+      description: 
+        "A Quora-like platform designed specifically for university students to share knowledge and resources. Features include department-wise forums, professor-verified answers, real-time doubt solving sessions, resource sharing with version control, and an AI-powered content moderation system to maintain quality. The platform also includes a mentorship system connecting seniors with juniors.",
+      technologies: [
+        "Backend"
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://unilink-app.netlify.app",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/sankalp-nadiger/UniLink",
           icon: <Icons.github className="size-3" />,
         },
       ]
@@ -305,13 +360,13 @@ export const DATA = {
     }
   ],
   
- hackathons: [
+hackathons: [
   {
     title: "VVCE Infothon 4.0",
     result: "Winner",
     dates: "February 2025",
     location: "Mysuru, Karnataka",
-    description: "Built a blockchain-powered transparency platform for charitable donations with real-time impact tracking",
+    description: "Initiated FitFull - a smart healthcare management system with telemedicine features, MFA, and real-time health tracking. Implemented virtual consultations, personal medical records, and family sharing capabilities.",
     links: [
       {
         title: "Source",
@@ -324,40 +379,26 @@ export const DATA = {
     title: "Symbiot Hackathon 2025",
     dates: "April 2025",
     location: "Bengaluru, Karnataka",
-    description: "Developed an IoT ecosystem for smart city waste management with predictive collection routes",
+    description: "Developed VoxBiz's NLP-driven query generation and voice input features for natural language database querying and interactive chart visualization.",
     links: [
       {
         title: "Source",
         icon: <Icons.github className="size-3" />,
-        href: "https://github.com/sankalp-nadiger/AurisVue",
+        href: "https://github.com/sankalp-nadiger/VoxBiz",
       },
     ],
   },
-  {
+ {
     title: "Build India Hackathon",
-    result: "Top 10 Finalist",
+    result: "Top 100 Finalist",
     dates: "March 2025",
-    location: "New Delhi, Delhi",
-    description: "Created a rural education platform connecting remote students with urban mentors through low-bandwidth solutions",
+    location: "Gurugram, Delhi",
+    description: "Presented Thrive360 - an integrated wellness platform combining MindFull's mental health support features (AI-assisted journaling, counselor matching) with FitFull's healthcare management system (telemedicine, health tracking) to provide comprehensive well-being solutions.",
     links: [
       {
         title: "Source",
         icon: <Icons.github className="size-3" />,
-        href: "https://github.com/sankalp-nadiger/build-india-education",
-      },
-    ],
-  },
-  {
-    title: "Vertex Innovate 2025",
-    result: "Top 5 Qualifier",
-    dates: "February 2025",
-    location: "Chennai, Tamil Nadu",
-    description: "Developed an AI-powered accessibility tool for visually impaired users to navigate digital interfaces",
-    links: [
-      {
-        title: "Source",
-        icon: <Icons.github className="size-3" />,
-        href: "https://github.com/sankalp-nadiger/vertex-accessibility",
+        href: "https://github.com/sankalp-nadiger/Thrive360",
       },
     ],
   },
@@ -366,12 +407,12 @@ export const DATA = {
     result: "Top 5 Qualifier",
     dates: "January 2025",
     location: "Thanjavur, Tamil Nadu",
-    description: "Created a smart healthcare platform integrating wearable data with predictive analytics",
+    description: "Enhanced MindFull with telemedicine integration for remote counseling sessions and AI-driven mood analysis for personalized therapy recommendations.",
     links: [
       {
         title: "Source",
         icon: <Icons.github className="size-3" />,
-        href: "https://github.com/sankalp-nadiger/sastra-healthtech",
+        href: "https://github.com/sankalp-nadiger/MindFull",
       },
     ],
   },
@@ -380,7 +421,7 @@ export const DATA = {
     result: "Runner-Up",
     dates: "December 2024",
     location: "Chennai, Tamil Nadu",
-    description: "Built an AI-powered solution for sustainable agriculture monitoring and optimization",
+    description: "Developed MindFull's AI-assisted journal writing and vision board creation features, focusing on personalized mental health support.",
     links: [
       {
         title: "Source",
@@ -394,7 +435,7 @@ export const DATA = {
     result: "Participant",
     dates: "April 2025",
     location: "Mangaluru, Karnataka",
-    description: "Worked on a real-time disaster response coordination platform with ML-based resource allocation",
+    description: "Advanced VoxBiz with real-time data visualization and customizable executive dashboards for resource management.",
     links: [
       {
         title: "Source",
@@ -408,7 +449,7 @@ export const DATA = {
     result: "Participant",
     dates: "April 2025",
     location: "Coimbatore, Tamil Nadu",
-    description: "Developed an ML-based early disease detection system using wearable health data",
+    description: "Created FoodLoop's blockchain-enabled donation tracking and AI-powered smart logistics system for food recovery.",
     links: [
       {
         title: "Source",
@@ -422,15 +463,15 @@ export const DATA = {
     result: "Participant",
     dates: "April 2025",
     location: "Bengaluru, Karnataka",
-    description: "Created an educational platform integrating AR/VR for immersive STEM learning",
+    description: "Advanced FitFull's AI capabilities with enhanced disease prediction models and integrated wearable device analytics for comprehensive patient monitoring.",
     links: [
       {
         title: "Source",
         icon: <Icons.github className="size-3" />,
-        href: "https://github.com/sankalp-nadiger/immersive-learning",
+        href: "https://github.com/sankalp-nadiger/FitFull",
       },
     ],
-  },
+  }
 ],
   
   awards: [

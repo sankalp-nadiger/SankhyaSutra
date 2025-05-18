@@ -68,8 +68,8 @@ const MediaComponent = ({ data, onFullscreen }: MediaComponentProps) => {
       }}
       transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
       className={cn(
-        "fixed z-50 w-[400px]",
-        position.side === "left" ? "left-8" : "right-8"
+        "fixed z-50 w-[360px]",
+        position.side === "left" ? "left-3" : "right-3"
       )}
       style={{ top: `${position.top}px` }}
     >
