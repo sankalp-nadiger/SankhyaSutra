@@ -25,9 +25,8 @@ const CallToAction = () => {
     >
       <motion.h1 className="text-5xl md:text-7xl font-bold mb-6 text-center w-full">
         See potential?
-      </motion.h1>
-      <motion.p className="text-xl md:text-2xl mb-8 text-center max-w-2xl mx-auto px-4">
-        Let's collaborate and build something meaningful.
+      </motion.h1>      <motion.p className="text-xl md:text-2xl mb-8 text-center max-w-2xl mx-auto px-4">
+        Let&apos;s collaborate and build something meaningful.
       </motion.p>
       <motion.div className="flex justify-center w-full">
         <a 

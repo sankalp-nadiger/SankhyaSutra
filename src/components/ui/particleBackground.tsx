@@ -440,7 +440,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
       if (repulseAnimationFrame.current !== null) {
         cancelAnimationFrame(repulseAnimationFrame.current);
       }
-    };
+    };  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     effectiveParticleColorLight, 
     effectiveParticleColorDark, 
