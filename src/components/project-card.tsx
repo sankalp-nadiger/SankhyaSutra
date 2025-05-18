@@ -107,10 +107,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div className="relative project-card" ref={ref}>
       {/* Main card content - always centered */}
-      <div className="w-full">
+      <div className="w-full relative">
         <GlareCard
           className={cn(
-            "flex flex-col overflow-hidden transition-all duration-300 ease-out h-full",
+            "flex flex-col overflow-hidden transition-all duration-300 ease-out h-full relative",
             index % 2 === 0
               ? "bg-gradient-to-br from-white via-rose-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
               : "bg-gradient-to-br from-white via-blue-50 to-white dark:from-slate-950 dark:via-slate-800 dark:to-slate-950",
@@ -169,11 +169,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             {links && links.length > 0 && (
               <div className="flex flex-row flex-wrap items-start gap-2">
                 {links?.map((link, idx) => (
-                  <Link href={link?.href} key={idx} target="_blank">
+                  <Link 
+                    key={idx}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block hover:scale-105 transition-transform cursor-pointer" 
+                  >
                     <Badge
-                      key={idx}
                       className={cn(
-                        "flex gap-2 px-3 py-1.5 text-xs font-medium shadow-sm hover:shadow-md transition-all",
+                        "flex items-center gap-2 px-3 py-1.5 text-xs font-medium shadow-sm hover:shadow-md transition-all cursor-pointer",
                         index % 2 === 0
                           ? "bg-gradient-to-r from-teal-100 to-cyan-100 text-teal-800 dark:from-purple-900 dark:to-pink-900 dark:text-purple-200 border border-teal-200 dark:border-purple-800"
                           : "bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 dark:from-amber-900 dark:to-orange-900 dark:text-amber-200 border border-amber-200 dark:border-amber-800"

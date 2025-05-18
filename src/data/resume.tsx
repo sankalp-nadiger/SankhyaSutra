@@ -398,7 +398,7 @@ hackathons: [
       {
         title: "Source",
         icon: <Icons.github className="size-3" />,
-        href: "https://github.com/sankalp-nadiger/Thrive360",
+        href: "https://github.com/sujithkb24/Thrive360",
       },
     ],
   },

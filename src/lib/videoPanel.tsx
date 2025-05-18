@@ -65,18 +65,18 @@ const MediaComponent = ({ data, onFullscreen }: MediaComponentProps) => {
         x: position.side === "left" ? -60 : 60,
         scale: 0.9,
         transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
-      }}
-      transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+      }}      transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
       className={cn(
-        "fixed z-50 w-[360px]",
+        "fixed w-[360px]",
         position.side === "left" ? "left-3" : "right-3"
       )}
-      style={{ top: `${position.top}px` }}
+      style={{ top: `${position.top}px`, pointerEvents: 'none' }}
     >
       <motion.div 
         className="relative rounded-lg overflow-hidden shadow-xl bg-black/5 backdrop-blur-sm group"
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.2 }}
+        style={{ pointerEvents: 'auto' }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -88,13 +88,12 @@ const MediaComponent = ({ data, onFullscreen }: MediaComponentProps) => {
           playsInline
           className="w-full aspect-video object-cover rounded-lg"
         />
-        
-        <motion.button
+          <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.2 }}
           onClick={() => onFullscreen(data)}
-          className="absolute top-2 right-2 p-2 rounded-lg bg-black/20 backdrop-blur-sm text-white/90 hover:bg-black/40 hover:text-white transition-all"
+          className="absolute top-2 right-2 p-2 rounded-lg bg-black/20 backdrop-blur-sm text-white/90 hover:bg-black/40 hover:text-white transition-all pointer-events-auto"
         >
           <Expand className="w-5 h-5" />
         </motion.button>
