@@ -86,6 +86,7 @@ export const DATA = {
       dates: "2024",
       active: true,
       video: "/mindfull.mp4",
+      image: "/Mindfull.png",
       description:
         "A comprehensive mental health support platform designed to help students, parents, and educators foster better mental well-being through personalized content, peer support, and professional guidance from counselors. Features include real-time group chats, in-app video consultation, AI-assisted journal writing, vision board creation & to-do-list maker.",
       technologies: [
@@ -110,9 +111,10 @@ export const DATA = {
     {
       title: "VoxBiz",
       href: "https://voxbiz-demo.netlify.app",
-      dates: "2024",
+      dates: "2025",
       active: true,
       video: "/voxbiz.mp4",
+      image: "/Voxbiz.png",
       description:
         "A GenAI-powered platform that lets non-technical users query databases using natural language and visualize real-time data through interactive charts. It features animations, NLP-driven query generation, voice input, query history, rule management, and guided customization for executive decision-making.",
       technologies: [
@@ -139,9 +141,10 @@ export const DATA = {
     {
       title: "CineGenie",
       href: "https://cinegenie-demo.netlify.app",
-      dates: "2023",
+      dates: "2025",
       active: true,
       video: "/cinegenie.mp4",
+      image: "/CineGenie.png",
       description:
         "An AI-powered movie recommendation platform that suggests personalized films based on mood, preferences, and viewing history. Features include custom watchlists, social sharing, and content discovery across multiple streaming platforms in one unified interface.",
       technologies: [
@@ -166,9 +169,10 @@ export const DATA = {
     {
       title: "FoodLoop",
       href: "https://foodloopweb.netlify.app",
-      dates: "2024",
+      dates: "2025",
       active: true,
       video: "/foodloop.mp4",
+      image: "/foodloop.png",
       description:
         "An AI-powered, blockchain-enabled food donation platform that enables real-time food recovery, transparency, and impact reporting. It connects donors, NGOs, and volunteers through smart logistics, packaging, and disposal suggestions—aligned with 5 UN SDGs.",
       technologies: [
@@ -193,7 +197,9 @@ export const DATA = {
     {
       title: "SpendWise",
       href: "https://spendwiseweb.netlify.app",
-      dates: "2023",
+      video: "/spendwise.mp4",
+      image: "/Spendwise.png",
+      dates: "2024",
       active: true,
       description:
         "A MERN-based expense tracker with interactive dashboards, Telegram Ping support, and Face Authentication—designed for both individual users and organizations to manage expenses, budgets, and audits efficiently.",
@@ -220,9 +226,10 @@ export const DATA = {
     {
       title: "FitFull",
       href: "https://fitfull.netlify.app",
-      dates: "2023",
+      dates: "2025",
       active: true,
       video: "/fitfull.mp4",
+      image: "/Fitfull.png",
       description:
         "A smart healthcare management system that ensures seamless access to personal medical records and family sharing with MFA, real-time health tracking, and AI-powered disease predictions. It integrates wearable devices, telemedicine, and AI models to enhance patient care.",
       technologies: [
@@ -247,9 +254,10 @@ export const DATA = {
     {
       title: "AurisVue",
       href: "https://aurisvue.netlify.app",
-      dates: "2024",
+      dates: "2025",
       active: true,
       video: "/aurisvue.mp4",
+      image: "/AurisVue.png",
       description: 
         "A real-time audio to Indian Sign Language (ISL) translation platform with multiple modes for different use cases. Features include public mode for general accessibility, training mode for learners, plugin mode for integration with other platforms, and classroom mode with analytics dashboard, live interactive sessions, and adaptive quizzes for educational institutions.",
       technologies: [
@@ -273,30 +281,6 @@ export const DATA = {
         },
       ]
     },
-    {
-      title: "UniLink",
-      href: "https://unilink-app.netlify.app",
-      dates: "2024",
-      active: true,
-      //video: "/unilink.mp4",
-      description: 
-        "A Quora-like platform designed specifically for university students to share knowledge and resources. Features include department-wise forums, professor-verified answers, real-time doubt solving sessions, resource sharing with version control, and an AI-powered content moderation system to maintain quality. The platform also includes a mentorship system connecting seniors with juniors.",
-      technologies: [
-        "Backend"
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://unilink-app.netlify.app",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
-          href: "https://github.com/sankalp-nadiger/UniLink",
-          icon: <Icons.github className="size-3" />,
-        },
-      ]
-    }
   ],
   
   experience: [

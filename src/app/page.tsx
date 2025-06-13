@@ -13,6 +13,7 @@ import Markdown from "react-markdown";
 import { ZoomableAvatar } from "@/components/zoomable-avatar";
 import ParticleBackground from "@/components/ui/particleBackground";
 import { VideoSidePanelsProvider } from "@/lib/videoPanel";
+import { cn } from "@/lib/utils";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -180,6 +181,19 @@ export default function Page() {
                   />
                 </BlurFade>
               ))}
+              <BlurFade
+                delay={BLUR_FADE_DELAY * 12 + DATA.projects.length * 0.05}
+                className={cn(
+                  "min-h-[200px]",
+                  DATA.projects.length % 2 === 0 ? "sm:col-span-2" : ""
+                )}
+              >
+                <div className="h-full flex items-center justify-center p-8 rounded-lg border border-dashed border-muted-foreground/50">
+                  <p className="text-xl font-semibold text-muted-foreground/80">
+                    More Cooking...
+                  </p>
+                </div>
+              </BlurFade>
             </div>
           </div>
         </section>

@@ -49,8 +49,24 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   index = 0, // Default to 0 if not provided
 }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const { registerProjectCard } = useContext(VideoSidePanelsContext);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const touchEnd = e.changedTouches[0].clientX;
+    const swipeDistance = touchEnd - touchStart;
+    
+    // Only flip if the swipe distance is significant (more than 50px)
+    if (Math.abs(swipeDistance) > 50) {
+      setIsFlipped(prev => !prev);
+    }
+  };
 
   // Check if the device is mobile or tablet
   useEffect(() => {
@@ -80,7 +96,26 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   // Mobile media component that appears within the card
   const MobileMediaComponent = () => (
     <div className="relative rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md transition-all duration-300">
-      {video ? (
+      {isFlipped ? (
+        video ? (
+          <div className="relative aspect-video">
+            <video
+              src={video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ) : (
+          image && (
+            <div className="relative aspect-video">
+              <Image src={image} alt={title} fill className="object-cover" />
+            </div>
+          )
+        )
+      ) : (
         <div className="relative aspect-video">
           <Image
             src={image || "/api/placeholder/400/320"}
@@ -88,29 +123,45 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
-            <div className="w-12 h-12 rounded-full bg-white bg-opacity-80 flex items-center justify-center">
-              <div className="w-0 h-0 border-t-6 border-b-6 border-l-10 border-t-transparent border-b-transparent border-l-indigo-600 ml-1"></div>
+          <div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px]">
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center">
+                <svg 
+                  viewBox="0 0 24 24" 
+                  className="w-6 h-6 text-indigo-600"
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2"
+                >
+                  <path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <span className="text-white text-sm font-medium px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm">
+                Swipe to preview
+              </span>
             </div>
           </div>
         </div>
-      ) : (
-        image && (
-          <div className="relative aspect-video">
-            <Image src={image} alt={title} fill className="object-cover" />
-          </div>
-        )
       )}
     </div>
   );
 
   return (
-    <div className="relative project-card" ref={ref}>
+    <div
+      className="relative project-card"
+      ref={ref}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Main card content - always centered */}
-      <div className="w-full relative">
+      <div className={cn("w-full relative", isMobile && "perspective-1000")}>
         <GlareCard
+          style={{
+            transform: isMobile && isFlipped ? 'rotateY(180deg)' : 'rotateY(0)',
+            transformStyle: 'preserve-3d',
+          }}
           className={cn(
-            "flex flex-col overflow-hidden transition-all duration-300 ease-out h-full relative",
+            "flex flex-col overflow-hidden transition-all duration-500 ease-out h-full relative backface-hidden",
             index % 2 === 0
               ? "bg-gradient-to-br from-white via-rose-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
               : "bg-gradient-to-br from-white via-blue-50 to-white dark:from-slate-950 dark:via-slate-800 dark:to-slate-950",
@@ -140,8 +191,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
           <CardContent className="mt-auto flex flex-col px-4">
             {/* Show media for mobile devices inside the card */}
-            {video && isMobile && (
-              <div className="mb-4">
+            {(video || image) && isMobile && (
+              <div className="relative mb-4">
                 <MobileMediaComponent />
               </div>
             )}

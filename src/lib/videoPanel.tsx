@@ -110,15 +110,36 @@ const MediaComponent = ({ data, onFullscreen }: MediaComponentProps) => {
 
 export function VideoSidePanelsProvider({ children }: VideoSidePanelsProviderProps) {
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [visibleVideos, setVisibleVideos] = useState<VisibleVideoWithPosition[]>([]);
   const [fullscreenVideo, setFullscreenVideo] = useState<VideoData | null>(null);
   const [zoom, setZoom] = useState(1);
 
   useEffect(() => {
+    const checkDeviceType = () => {
+      setIsMobile(window.innerWidth < 1200);
+    };
+
+    // Initial check
+    checkDeviceType();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkDeviceType);
+
+    return () => window.removeEventListener("resize", checkDeviceType);
+  }, []);  useEffect(() => {
     setMounted(true);
     
+    // Don't initialize on mobile
+    if (isMobile) {
+      setVisibleVideos([]);
+      return;
+    }
+
+    let observer: IntersectionObserver;
+    
     // Setup intersection observer for project cards
-    const observer = new IntersectionObserver(
+    observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
           const element = entry.target as HTMLElement;
@@ -181,12 +202,13 @@ export function VideoSidePanelsProvider({ children }: VideoSidePanelsProviderPro
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    return () => {
-      projectCards.forEach(card => observer.unobserve(card));
+      return () => {
+      if (observer) {
+        projectCards.forEach(card => observer.unobserve(card));
+      }
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isMobile]) // Add isMobile as a dependency;
 
   useEffect(() => {
     if (!fullscreenVideo) {
@@ -208,7 +230,7 @@ export function VideoSidePanelsProvider({ children }: VideoSidePanelsProviderPro
   return (
     <VideoSidePanelsContext.Provider value={value}>
       {children}
-      {mounted && createPortal(
+      {mounted && !isMobile && createPortal(
         <AnimatePresence>
           {visibleVideos.map((video) => (
             <MediaComponent
