@@ -155,11 +155,6 @@ export const DATA = {
       ],
       links: [
         {
-          type: "Website",
-          href: "https://cinegenie-demo.netlify.app",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
           type: "Source",
           href: "https://github.com/sankalp-nadiger/CineGenie",
           icon: <Icons.github className="size-3" />,
