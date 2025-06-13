@@ -11,9 +11,11 @@ interface GlareState {
 export const GlareCard = ({
   children,
   className,
+  style
 }: {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }) => {
   const { resolvedTheme } = useTheme();
   const isPointerInside = useRef(false);

@@ -363,6 +363,7 @@ hackathons: [
     title: "Symbiot Hackathon 2025",
     dates: "April 2025",
     location: "Bengaluru, Karnataka",
+    result: "Participant",
     description: "Developed VoxBiz's NLP-driven query generation and voice input features for natural language database querying and interactive chart visualization.",
     links: [
       {
