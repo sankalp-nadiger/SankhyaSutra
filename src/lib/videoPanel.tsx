@@ -88,12 +88,15 @@ const MediaComponent = ({ data, onFullscreen }: MediaComponentProps) => {
           playsInline
           className="w-full aspect-video object-cover rounded-lg"
         />
-          <motion.button
+        <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.2 }}
           onClick={() => onFullscreen(data)}
-          className="absolute top-2 right-2 p-2 rounded-lg bg-black/20 backdrop-blur-sm text-white/90 hover:bg-black/40 hover:text-white transition-all pointer-events-auto"
+          className={cn(
+            "absolute top-2 p-2 rounded-lg bg-black/20 backdrop-blur-sm text-white/90 hover:bg-black/40 hover:text-white transition-all pointer-events-auto",
+            position.side === "left" ? "left-2" : "right-2"
+          )}
         >
           <Expand className="w-5 h-5" />
         </motion.button>
